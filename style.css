@@ -57,3 +57,32 @@ canvas{width:100%!important;border-radius:8px;background:#1e2130}
 .method-explain strong{color:#a78bfa}
 .signature{text-align:center;margin-top:20px;color:#94a3b8;font-size:12px;}
 @media(max-width:580px){.grid2{grid-template-columns:1fr}}
+/* Esto se activa solo en celulares */
+@media (max-width: 768px) {
+    /* El contenedor principal ahora será una sola columna */
+    .container, .main-content { 
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* Las secciones (configuración, gráfico, resultados) ocuparán todo el ancho */
+    .config-section, .graph-section, .results-section {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+
+    /* Ajustamos el tamaño del gráfico para que no se salga de la pantalla */
+    canvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Los inputs de las restricciones en 2 columnas para que no se vean diminutos */
+    .restriction-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+    }
+}
