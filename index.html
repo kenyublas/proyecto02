@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Solucionador Simplex Completo</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<div class="wrap">
+<div class="title">Solucionador Simplex Completo</div>
+<div class="sub">Simplex · Gran M · Dos Fases — restricciones ≤, ≥, =</div>
+
+<div class="slabel" style="margin-top:0">Método</div>
+<div class="method-row">
+  <button class="mbtn active" id="mSimplex" onclick="setMetodo('simplex')">Simplex estándar</button>
+  <button class="mbtn" id="mGranM" onclick="setMetodo('granm')">Gran M</button>
+  <button class="mbtn" id="mDosFases" onclick="setMetodo('dosfases')">
+    Dos Fases</button>
+</div>
+<div id="methodInfo" class="method-explain">
+  <strong>Simplex estándar:</strong> Solo restricciones ≤. Variables de holgura forman la base inicial.
+</div>
+
+<div class="grid2">
+<div>
+  <div class="slabel" style="margin-top:0">Configuración</div>
+  <div class="card">
+    <label>Optimización</label>
+    <div style="display:flex;gap:8px;margin-bottom:.75rem">
+      <button class="tipo-btn active" id="btnMax" onclick="setTipo('MAX')">MAX</button>
+      <button class="tipo-btn" id="btnMin" onclick="setTipo('MIN')">MIN</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div><label>Variables</label>
+        <select id="nVars" onchange="buildInputs()">
+          <option value="2" selected>2</option><option value="3">3</option><option value="4">4</option>
+        </select>
+      </div>
+      <div><label>Restricciones</label>
+        <select id="nRestr" onchange="buildInputs()">
+          <option value="2" selected>2</option><option value="3">3</option><option value="4">4</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="slabel">Función objetivo <span class="badge" id="tipoBadge">MAX</span></div>
+  <div class="card" id="foCard"></div>
+
+  <div class="slabel">Restricciones</div>
+  <div id="tipoHint" style="font-size:11px;color:#4b5563;margin-bottom:6px">Solo tipo ≤ disponible en Simplex estándar</div>
+  <div class="card" id="restrCard"></div>
+
+  <div style="display:flex;gap:8px;margin-top:.75rem">
+    <button class="btn btn-primary" style="flex:1" onclick="resolver()">Resolver</button>
+    <button class="btn btn-sec" onclick="limpiar()">Limpiar</button>
+  </div>
+</div>
+
+<div>
+  <div class="slabel" style="margin-top:0">Región factible <span style="color:#4b5563;font-size:11px">(2 variables)</span></div>
+  <div class="card" style="padding:.75rem">
+    <canvas id="grafico" height="240"></canvas>
+  </div>
+  <div id="resultados"></div>
+</div>
+</div>
+</div>
+<div class="signature">
+  
+  <span style="font-size:10px;"><i class="fab fa-tiktok"></i> @kenyublasdejavu | <i class="fab fa-instagram"></i> @kenyublas</span>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
